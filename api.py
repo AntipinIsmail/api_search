@@ -10,7 +10,7 @@ db = SQLAlchemy(app)
 api = Api(app)
 
 
-class ItemModel(db.Model):
+class ItemModel(db.Model): # ТАБЛИЦА SQLITE 3
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
     price = db.Column(db.Integer(), nullable=False)
@@ -52,8 +52,8 @@ class Items(Resource):
         if colour_filter:
             items_query = items_query.filter(ItemModel.colour == colour_filter)
         if price_filter:
-            if price_filter[0] == "-":
-                items_query = items_query.filter(ItemModel.price <= int(price_filter[1:]))
+            if price_filter[0] == "-": #минус для цены от
+                items_query = items_query.filter(ItemModel.price >= int(price_filter[1:]))
             else:
                 items_query = items_query.filter(ItemModel.price <= int(price_filter))
 
