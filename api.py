@@ -38,7 +38,7 @@ itemFields = {'id': fields.Integer,
 
 class Items(Resource):
     @marshal_with(itemFields)
-    def get(self): #фильтрация
+    def get(self):  # фильтрация
         name_filter = request.args.get("name")
         type_filter = request.args.get("type")
         price_filter = request.args.get("price")
